@@ -15,7 +15,6 @@ cgitb.enable()
 print "Content-Type: text/html"     
 print                              
 
-
 f = open('matepage.template', 'r');
 template = Template(f.read())
 
@@ -32,8 +31,6 @@ components = dict(
 head = head.get_head(),
 matelist = matelist.get_matelist(user)
 )
-
-
 
 data = dict(
 user_username = matedb.get_data(user, 'username'),
