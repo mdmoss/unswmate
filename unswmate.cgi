@@ -4,6 +4,7 @@ from string import Template
 
 import matedb
 import head
+import matelist
 
 # Enable errors-to-browser
 import cgitb
@@ -17,12 +18,15 @@ print
 f = open('matepage.template', 'r');
 template = Template(f.read())
 
-components = dict(
-head = head.get_head()
-)
-
 form = cgi.FieldStorage()
 user = form['user'].value
+
+components = dict(
+head = head.get_head(),
+matelist = matelist.get_matelist(user)
+)
+
+
 
 data = dict(
 user_username = matedb.get_data(user, 'username'),
