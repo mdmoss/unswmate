@@ -1,0 +1,9 @@
+<!-- Common Head -->
+${head}
+
+<p>${user_username}</p>
+<p>${user_name}</p>
+<p>${user_email}</p>
+<p>${user_gender}</p>
+<p>${user_degree}</p>
+<p>${user_student_number}</p>

@@ -23,7 +23,8 @@ def get_data(user, field):
     # I'm a bad man
     query = 'SELECT %s FROM users WHERE username=?' % field
     c.execute(query, t)
-    if c.rowcount > 0:
-        return c.fetchone()[0]
+    res = c.fetchone()
+    if res:
+        return res[0]
     else:
         return ''
