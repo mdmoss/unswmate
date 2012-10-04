@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 import cgi
 
 # Enable errors-to-browser
@@ -10,3 +9,8 @@ cgitb.enable()
 print "Content-Type: text/html"     
 print                              
 
+# This is lazy
+print '<link href="css/bootstrap.min.css" rel="stylesheet">'
+
+f = open('sidebar.template', 'r');
+print f.read()
