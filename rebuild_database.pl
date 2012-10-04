@@ -28,9 +28,7 @@ foreach my $user (@all_users) {
         if ($line =~ /(\w+):/) {
             $active_var = $1;
         } elsif ($line =~ /^\s*(.*?)\s*$/){
-        
             my $value = $1;
-        
             if ($active_var =~ /mates/) {
                 push (@mates, $value);
             } elsif ($active_var =~ /courses/) {
