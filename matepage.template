@@ -3,8 +3,7 @@ ${head}
 
 <h1> Me </h1>
 
-<p>${user_username}</p>
-$(user_profile_picture}
+${user_profile_picture}
 <p>${user_name}</p>
 <p>${user_gender}</p>
 <p>${user_degree}</p>
