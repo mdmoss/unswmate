@@ -5,42 +5,54 @@ from string import Template
 import matedb
 import head
 import matelist
-import images
+import matepage
+import authbar
 
 # Enable errors-to-browser
 import cgitb
 cgitb.enable()
 
-# Print the usual header
-print "Content-Type: text/html"     
-print                              
+# Print a common header
+print "Content-Type: text/html"
+print
 
-f = open('matepage.template', 'r');
-template = Template(f.read())
+# You may be wondering how we're going to handle cookies, because normally
+# they're placed in the header. There's going to be some javascript magic!
+      
+c = cgi.FieldStorage()      
+  
+def handle_error():
+    print "An error occured, and was caught. Whoops..."
+      
+# Actions have priority in our routing system
 
-form = cgi.FieldStorage()
-if 'user' in form:
-    user = form['user'].value
-else:
-    user = ''
+if 'action' in c:
 
-if 'mood' in form and form['mood'].value == "sad":
-    print '<iframe src="http://www.omfgdogs.com/" width="1920" height="1080" frameborder="0"></iframe>'
+    actions = {
+        'login': authbar.do_login,
+        'logout': authbar.do_logout,
+    }
+    
+    chosen = c['action'].value
+    actions.get(chosen, handle_error)()
 
-components = dict(
-head = head.get_head(),
-matelist = matelist.get_matelist(user)
-)
+# Followed by pages
+      
+elif 'page' in c:
 
-data = dict(
-user_username = matedb.get_data(user, 'username'),
-user_profile_picture = images.get_profile_picture(user),
-user_name = matedb.get_data(user, 'name'),
-user_gender = matedb.get_data(user, 'gender'),
-user_degree = matedb.get_data(user, 'degree'),
-user_student_number = matedb.get_data(user, 'student_number'),
-)
+    pages = dict(
+    )
+    
+    chosen = c['page'].value
+    print pages[chosen]()
+      
+# Or at least an ordinary matepage
 
-data.update(components)
+elif 'user' in c:
+    print matepage.render()
 
-print template.substitute(data)
+# At worst, show a welcome screen
+      
+else:      
+    print matepage.render()
+    

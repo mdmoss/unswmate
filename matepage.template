@@ -1,5 +1,6 @@
 <!-- Common Head -->
 ${head}
+${authbar}
 
 <h1> Me </h1>
 

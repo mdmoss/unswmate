@@ -1,0 +1,4 @@
+<script type="text/javascript">
+$.cookie('auth', null)
+window.location.href = "http://www.cse.unsw.edu.au/~mdm/unswmate/unswmate.cgi"
+</script>

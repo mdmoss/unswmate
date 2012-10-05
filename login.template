@@ -1,0 +1,3 @@
+<script type="text/javascript">
+$.cookie('login', 'true', {path: '/'})
+</script>
