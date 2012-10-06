@@ -8,6 +8,7 @@ import matelist
 import images         
 import authbar 
 import tempy
+import gallery
 
 def render():
 
@@ -22,6 +23,7 @@ def render():
 
     data = dict(
         matelist = matelist.get_matelist(user),
+        gallery = gallery.get_gallery(user),
         profile_picture = images.get_profile_picture(user),
     )
 

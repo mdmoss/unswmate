@@ -7,6 +7,7 @@ import head
 import matelist
 import matepage
 import authbar
+import cgienv
 
 # Enable errors-to-browser
 import cgitb
@@ -18,7 +19,6 @@ print
 
 # You may be wondering how we're going to handle cookies, because normally
 # they're placed in the header. There's going to be some javascript magic!
-      
 c = cgi.FieldStorage()      
   
 def handle_error():

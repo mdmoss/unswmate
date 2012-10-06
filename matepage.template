@@ -1,15 +1,41 @@
 <!-- Common Head -->
 ${head}
+<body>
 ${authbar}
 
-<h1> Me </h1>
+<div id="profile">
+    <div class="container">
+        <div class="span3">
+            ${profile_picture}
+        </div>
+        <div class="span5">
+            <h1>${name}</h1>
+            <p>${gender}</p>
+            <p>${degree}</p>
+            <p>${student_number}</p>
+        </div>
+    </div>
+</div>
 
-${profile_picture}
-<p>${name}</p>
-<p>${gender}</p>
-<p>${degree}</p>
-<p>${student_number}</p>
-
-<h1> My Mates </h1>
-
-${matelist}
+<div>
+    <div class="container">
+        <div class="section">
+            <br />
+            <ul class="nav nav-tabs">
+                <li><a href="#mates" data-toggle="tab">Mates</a></li>
+                <li><a href="#news" data-toggle="tab">News</a></li>
+                <li><a href="#gallery" data-toggle="tab">Gallery</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="mates">
+                    ${matelist}
+                </div>
+                <div class="tab-pane fade" id="news">
+                </div>
+                <div class="tab-pane fade" id="gallery">
+                    ${gallery}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,12 +2,13 @@
 
 import matedb
 import images
+import cgienv
 
 def get_matelist(user):
 
     matelist = "";
 
     for mate in matedb.get_all_mates(user):
-        matelist = matelist + "<p>" + matedb.get_data(mate, 'name') + "</p>\n" + images.get_profile_picture(mate)
+        matelist += '<div class="span2"><a href=' + cgienv.get_URL() + "?who=" + mate + ">" + matedb.get_data(mate, 'name') + images.get_profile_picture(mate) + "</a></div>\n"
         
-    return '<div class="span1">' + matelist + '</div>'
+    return matelist
