@@ -48,7 +48,7 @@ elif 'page' in c:
       
 # Or at least an ordinary matepage
 
-elif 'user' in c:
+elif 'who' in c:
     print matepage.render()
 
 # At worst, show a welcome screen

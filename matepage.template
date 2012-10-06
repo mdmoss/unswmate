@@ -4,11 +4,11 @@ ${authbar}
 
 <h1> Me </h1>
 
-${user_profile_picture}
-<p>${user_name}</p>
-<p>${user_gender}</p>
-<p>${user_degree}</p>
-<p>${user_student_number}</p>
+${profile_picture}
+<p>${name}</p>
+<p>${gender}</p>
+<p>${degree}</p>
+<p>${student_number}</p>
 
 <h1> My Mates </h1>
 

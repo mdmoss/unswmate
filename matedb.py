@@ -14,7 +14,7 @@ def get_all_mates(user):
 def get_all_courses(user):
     t = (user,)
     courses = [];
-    for courses in c.execute('SELECT course FROM courses WHERE user=?', t):
+    for course in c.execute('SELECT course FROM courses WHERE user=?', t):
         courses.append(course[0])
     return courses
     
@@ -28,3 +28,14 @@ def get_data(user, field):
         return res[0]
     else:
         return ''
+
+def get_user_data(user):
+    fields = ['username', 'name', 'password', 'email', 'gender', 'degree', 'about', 'student_number']  
+    data = {}
+    for field in fields:
+        data[field] = get_data(user, field)
+    data['courses'] = get_all_courses(user);
+    data['mates'] = get_all_mates(user);
+    return data;
+
+
