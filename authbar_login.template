@@ -1,4 +1,4 @@
 <script type="text/javascript">
 $.cookie('auth', '${auth}')
-window.location.href = "http://www.cse.unsw.edu.au/~mdm/unswmate/unswmate.cgi"
+window.location.href = "${page}"
 </script>

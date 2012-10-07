@@ -6,6 +6,7 @@ from string import Template
 
 import matedb
 import head
+import cgienv
 
 def get_current_login():
     try:
@@ -14,26 +15,57 @@ def get_current_login():
     except (Cookie.CookieError, KeyError):
         return None;
         
-def do_login():
-    c = cgi.FieldStorage()
-    if 'username' in c and 'password' in c:
-        username = c['username'].value
-        password = c['password'].value
+def do_login(request):
+    if 'username' in request and 'password' in request:
+        username = request['username'].value
+        password = request['password'].value
         # For now, we'll be lazy
         if matedb.get_data(username, 'password') == password:
             # Successful login
             print head.get_head()
             f = open('authbar_login.template', 'r')
             t = Template (f.read())
-            print t.safe_substitute(auth=username)
+            print t.safe_substitute(auth=username, page=cgienv.get_full_URL())
             
-def do_logout():
+def do_logout(request):
     print head.get_head()
     f = open('authbar_logout.template', 'r')
     t = Template (f.read())
     print t.safe_substitute()
-            
+
+def get_auth_menu_label():
+    if get_current_login():
+        return matedb.get_data(get_current_login(), 'name')
+    else:
+        return "login"
+
+def get_auth_menu():
+    menu = ""
+    if get_current_login():
+        # A user is logged in
+        menu += '<li><a tabindex="-1" href="?who=' + get_current_login() + '">My Page</a><li>\n'
+        menu += '<li class="divider"></li>'
+        menu += '<li><a tabindex="-1" href="?action=logout">logout</a><li>\n'
+    else:
+        menu += '<li>'
+        menu += '<form method="post">'
+        menu += '<input type="hidden" name="action" value="login">'
+        menu += '<input type="text" name="username" class="input-small" placeholder="Username">'
+        menu += '<input type="password" name="password" class="input-small" placeholder="Password">'
+        menu += '<button type="submit" class="btn">Login</button>'
+        menu += '</form>'
+        menu += '</li>'
+    return menu
+
+
 def get_authbar():
     f = open('authbar_top.template', 'r')
     t = Template (f.read())
-    return t.safe_substitute(auth=get_current_login())
+
+    d = dict (
+        auth = get_current_login(),
+        auth_menu_label = get_auth_menu_label(),
+        auth_menu_contents = get_auth_menu()
+    )
+
+    return t.safe_substitute(d)
