@@ -38,4 +38,10 @@ def get_user_data(user):
     data['mates'] = get_all_mates(user);
     return data;
 
-
+def search_like(term, field):  
+    t = ('%' + term + '%',)
+    results = []
+    query = "SELECT username FROM users WHERE " + field + " LIKE ?"
+    for result in c.execute(query, t):
+        results.append(result[0])
+    return results

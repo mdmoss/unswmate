@@ -1,0 +1,9 @@
+<div class="span7">
+    <div class="span2">
+        <a href = ${user_page}>${profile_picture}</a>
+    </div>
+    <div class="span3">
+        <a href = ${user_page}><h3>${name}</h3></a>
+        <a href = ${user_page}><p>${username}</p></a> 
+    </div>
+</div>

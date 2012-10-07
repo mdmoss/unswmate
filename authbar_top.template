@@ -1,8 +1,8 @@
 <div class="navbar">
     <div class="navbar-inner">
-        <a class="brand">UNSWMate</a>
-        <form class="navbar-search pull-left">
-            <input type="text" class="search-query" placeholder="Search">
+        <a class="brand pull-left">UNSWMate</a>
+        <form class="navbar-search pull-left" method="get">
+            <input type="text" class="search-query" placeholder="Search" name="search">
         </form>
         <ul class="nav pull-right">
             <li class="dropdown">

@@ -8,6 +8,7 @@ import matelist
 import matepage
 import authbar
 import cgienv
+import search
 
 # Enable errors-to-browser
 import cgitb
@@ -49,7 +50,13 @@ elif 'page' in c:
     
     chosen = c['page'].value
     print pages[chosen]()
-      
+     
+# Was it a search?
+
+elif 'search' in c:
+
+   print search.render(c)  
+
 # Or at least an ordinary matepage
 
 elif 'who' in c:
