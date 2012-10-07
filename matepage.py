@@ -9,6 +9,7 @@ import images
 import authbar 
 import tempy
 import gallery
+import editor
 
 def render():
 
@@ -25,6 +26,8 @@ def render():
         matelist = matelist.get_matelist(user),
         gallery = gallery.get_gallery(user),
         profile_picture = images.get_profile_picture(user),
+        edit_pane_tab = editor.get_edit_tab(user),
+        edit_pane_contents = editor.render(user)
     )
 
     data.update(matedb.get_user_data (user));

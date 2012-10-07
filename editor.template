@@ -1,0 +1,23 @@
+<form method="post">
+    <input type="hidden" name="action" value="edit">
+    
+    <label>Name</label>
+    <input type="text" name="name" value="${name}">
+
+    <label>Email</label>
+    <input type="text" name="email" value="${email}">
+
+    <label>Gender</label>
+    <input type="text" name="gender" value="${gender}">
+
+    <label>Student Number</label>
+    <input type="text" name="student_number" value="${student_number}">
+
+    <label>Degree</label>
+    <input type="text" name="degree" value="${degree}">
+
+    <label>About Me</label>
+    <input type="text" name="about" value="${about}">
+
+    <button type="submit" method="post" class="btn">Save</button>
+</form>

@@ -29,6 +29,12 @@ def get_data(user, field):
     else:
         return ''
 
+def set_data(user, field, value):
+    t = (value, user,)
+    query = 'UPDATE users SET %s=? WHERE username=? ' % field
+    c.execute(query, t)
+    conn.commit()
+
 def get_user_data(user):
     fields = ['username', 'name', 'password', 'email', 'gender', 'degree', 'about', 'student_number']  
     data = {}

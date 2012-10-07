@@ -9,6 +9,7 @@ import matepage
 import authbar
 import cgienv
 import search
+import editor
 
 # Enable errors-to-browser
 import cgitb
@@ -36,6 +37,7 @@ if 'action' in c:
     actions = {
         'login': authbar.do_login,
         'logout': authbar.do_logout,
+        'edit': editor.do_edit,
     }
     
     chosen = c['action'].value
