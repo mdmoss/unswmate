@@ -10,6 +10,8 @@ import authbar
 import cgienv
 import search
 import editor
+import create
+
 
 # Enable errors-to-browser
 import cgitb
@@ -27,7 +29,7 @@ c = cgi.FieldStorage()
 for key in c.keys():
     print key + " => " + c[key].value
   
-def handle_error():
+def handle_error(request):
     print "An error occured, and was caught. Whoops..."
       
 # Actions have priority in our routing system
@@ -38,6 +40,7 @@ if 'action' in c:
         'login': authbar.do_login,
         'logout': authbar.do_logout,
         'edit': editor.do_edit,
+        'create': create.get,
     }
     
     chosen = c['action'].value

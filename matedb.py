@@ -57,3 +57,8 @@ def search_like(term, field):
     for result in c.execute(query, t):
         results.append(result[0])
     return results
+
+def create_user(username, password, email):
+    t = (username, password, email,)
+    c.execute('INSERT INTO users (username, password, email) values (?, ?, ?)', t)
+    conn.commit()

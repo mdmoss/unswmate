@@ -10,7 +10,7 @@
                     ${auth_menu_label}
                     <b class="caret"></b>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" style="padding: 15px;padding-bottom:0px;margin-top:8px;">
 
                    ${auth_menu_contents}
 
