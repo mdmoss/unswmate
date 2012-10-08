@@ -4,6 +4,12 @@ import sqlite3
 conn = sqlite3.connect('unswmate.db')
 c = conn.cursor()
 
+def user_exists(user):
+    t = (user, )
+    if c.execute('SELECT * FROM users WHERE username=?', t).fetchone():
+        return True
+    return False
+
 def get_all_mates(user):
     t = (user,)
     mates = [];
