@@ -5,6 +5,7 @@ import tempy
 import images
 import cgienv
 from string import Template
+from safety import make_safe
 
 def render(request):
     searchterm = request['search'].value
@@ -12,7 +13,7 @@ def render(request):
     if results:
         result_string = render_results(results)
     else:
-        result_string = "No Results for " + searchterm
+        result_string = "No Results for " + make_safe(searchterm)
 
     data = dict(
         search_result = result_string
