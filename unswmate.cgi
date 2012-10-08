@@ -11,6 +11,7 @@ import cgienv
 import search
 import editor
 import create
+import upload
 
 
 # Enable errors-to-browser
@@ -41,6 +42,7 @@ if 'action' in c:
         'logout': authbar.do_logout,
         'edit': editor.do_edit,
         'create': create.get,
+        'upload':upload.do_upload,
     }
     
     chosen = c['action'].value
