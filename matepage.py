@@ -10,6 +10,7 @@ import authbar
 import tempy
 import gallery
 import editor
+import upload
 
 def render():
 
@@ -27,7 +28,9 @@ def render():
         gallery = gallery.get_gallery(user),
         profile_picture = images.get_profile_picture(user),
         edit_pane_tab = editor.get_edit_tab(user),
-        edit_pane_contents = editor.render(user)
+        edit_pane_contents = editor.render(user),
+        upload_pane_tab = upload.get_upload_tab(user),
+        upload_pane_contents = upload.render(user),
     )
 
     data.update(matedb.get_user_data (user));

@@ -14,6 +14,10 @@ ${authbar}
             <p>${degree}</p>
             <p>${student_number}</p>
         </div>
+        <div class="span9">
+            <h3>About Me</h3>
+            <p>${about}</p>
+        </div>
     </div>
 </div>
 
@@ -26,6 +30,7 @@ ${authbar}
                 <li><a href="#news" data-toggle="tab">News</a></li>
                 <li><a href="#gallery" data-toggle="tab">Gallery</a></li>
                 ${edit_pane_tab}
+                ${upload_pane_tab}
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="mates">
@@ -38,6 +43,9 @@ ${authbar}
                 </div>
                 <div class="tab-pane fade" id="edit">
                     ${edit_pane_contents}
+                </div>
+                <div class="tab-pane fade" id="upload">
+                    ${upload_pane_contents}
                 </div>
             </div>
         </div>

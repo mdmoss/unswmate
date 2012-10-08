@@ -2,22 +2,24 @@
     <input type="hidden" name="action" value="edit">
     
     <label>Name</label>
-    <input type="text" name="name" value="${name}">
+    <input type="text" name="name" value="${name}" class="input-xxlarge">
 
     <label>Email</label>
-    <input type="text" name="email" value="${email}">
+    <input type="text" name="email" value="${email}" class="input-xxlarge">
 
     <label>Gender</label>
-    <input type="text" name="gender" value="${gender}">
+    <input type="text" name="gender" value="${gender}" class="input-xxlarge">
 
     <label>Student Number</label>
-    <input type="text" name="student_number" value="${student_number}">
+    <input type="text" name="student_number" value="${student_number}" class="input-xxlarge">
 
     <label>Degree</label>
-    <input type="text" name="degree" value="${degree}">
+    <input type="text" name="degree" value="${degree}" class="input-xxlarge">
 
     <label>About Me</label>
-    <input type="text" name="about" value="${about}">
+    <textarea type="text" name="about" value="${about}" class="input-xxlarge" rows="5"></textarea>
 
+    <br />
+    
     <button type="submit" method="post" class="btn">Save</button>
 </form>

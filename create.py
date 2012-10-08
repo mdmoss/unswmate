@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
 from string import Template
-import subprocess
-from subprocess import Popen, PIPE
 
 import matedb
 import tempy
@@ -22,7 +20,8 @@ def get(request):
             form_contents += '<h3>Step 1: Supply a valid email address</h3>'
             form_contents += '<form method="post" action="unswmate.cgi?action=create">'
             form_contents += '<input type="hidden" name="action" value="create">'
-            form_contents += '<input type="text" name="email" placeholder="Email">'
+            form_contents += '<input type="text" name="email" placeholder="Email" class="input-xlarge">'
+            form_contents += '<br />'
             form_contents += '<button type="submit" class="btn">Submit</button>'
             form_contents += '</form>'
         else:
