@@ -6,6 +6,7 @@ import matedb
 import tempy
 import cgienv
 import csemail
+import os
 
 token = 'magic_token_I_am_too_lazy_to_store_serverside'
 
@@ -55,7 +56,6 @@ def get(request):
 
 
 def send_signup_email(email):
-
     msg = cgienv.get_URL() + '?action=create&email=' + email + '&' + token + '=1'
     csemail.send(email, 'UNSWMate Signup', msg)
 
@@ -76,3 +76,4 @@ def get_signup_form(email):
 
 def create_account(username, password, email):
     matedb.create_user(username, password, email)
+    # Add a folder for pics and such

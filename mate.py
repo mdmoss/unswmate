@@ -55,7 +55,11 @@ def get_mate_message(user, requester):
 def get_control_panel(user):
     panel = '<form method="post"><br />'
 
-    if user in matedb.get_all_mates(authbar.get_current_login()):
+    login = authbar.get_current_login()
+    
+    if user == login:
+        panel += '<p class="text-success"><b>Me!</b></p>'
+    elif user in matedb.get_all_mates(login):
         panel += '<p class="text-success"><b>Mates</b></p>'
     else:
         panel += '<button class="btn" type="submit">Send Mate Request</button>\n'
