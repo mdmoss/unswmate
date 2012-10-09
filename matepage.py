@@ -27,6 +27,7 @@ def render():
         matelist = matelist.get_matelist(user),
         gallery = gallery.get_gallery(user),
         profile_picture = images.get_profile_picture(user),
+        controls = get_control_panel(user),
         edit_pane_tab = editor.get_edit_tab(user),
         edit_pane_contents = editor.render(user),
         upload_pane_tab = upload.get_upload_tab(user),
@@ -36,3 +37,14 @@ def render():
     data.update(matedb.get_user_data (user));
 
     return tempy.render('matepage.template', data)
+
+def get_control_panel(user):
+    panel = '<form><br />'
+
+    if user in matedb.get_all_mates(authbar.get_current_login()):
+        panel += '<b><p class="text-success">Already Mates</p></b>'
+    else:
+        panel += '<button class="btn">Send Mate Request</button>'
+    
+    panel += '</form>'
+    return panel

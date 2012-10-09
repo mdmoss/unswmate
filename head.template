@@ -4,6 +4,6 @@
     <!-- Legit Boostrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/jquery-cookie.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
 </head>

@@ -1,4 +1,6 @@
+<body>
 <script type="text/javascript">
 $.cookie('auth', '${auth}')
 window.location.href = "${page}"
 </script>
+</body>

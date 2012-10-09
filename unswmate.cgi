@@ -27,8 +27,8 @@ print
 c = cgi.FieldStorage()      
 
 # Debug!
-for key in c.keys():
-    print key + " => " + c[key].value
+#for key in c.keys():
+#    print key + " => " + c[key].value
   
 def handle_error(request):
     print "An error occured, and was caught. Whoops..."

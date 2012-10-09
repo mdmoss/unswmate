@@ -14,6 +14,9 @@ ${authbar}
             <p>${degree}</p>
             <p>${student_number}</p>
         </div>
+        <div class="span3">
+            ${controls}
+        </div>
         <div class="span9">
             <h3>About Me</h3>
             <p>${about}</p>
