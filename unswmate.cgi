@@ -12,6 +12,7 @@ import search
 import editor
 import create
 import upload
+import mate
 
 
 # Enable errors-to-browser
@@ -27,8 +28,8 @@ print
 c = cgi.FieldStorage()      
 
 # Debug!
-#for key in c.keys():
-#    print key + " => " + c[key].value
+for key in c.keys():
+    print key + " => " + c[key].value
   
 def handle_error(request):
     print "An error occured, and was caught. Whoops..."
@@ -42,7 +43,8 @@ if 'action' in c:
         'logout': authbar.do_logout,
         'edit': editor.do_edit,
         'create': create.get,
-        'upload':upload.do_upload,
+        'upload': upload.do_upload,
+        'mate': mate.handle,
     }
     
     chosen = c['action'].value

@@ -1,0 +1,10 @@
+${head}
+<body>
+${authbar}
+
+<div>
+    <div class="container">
+        <p>${message}</p>
+        <p><a href="${link}">${link_message}</a></p>
+    </div>
+</div>
