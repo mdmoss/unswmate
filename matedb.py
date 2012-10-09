@@ -62,3 +62,9 @@ def create_user(username, password, email):
     t = (username, password, email,)
     c.execute('INSERT INTO users (username, password, email) values (?, ?, ?)', t)
     conn.commit()
+    
+def add_mate(user, mate):
+    t = (user, mate,)
+    if not c.execute('SELECT * FROM mates WHERE user=? AND mate=?', t).fetchone():
+        c.execute('INSERT INTO mates (user, mate) values (?, ?)', t)
+        conn.commit()

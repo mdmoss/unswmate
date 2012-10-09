@@ -9,9 +9,10 @@ import tempy
 def handle(request):
 
     d = {}
+    requester = authbar.get_current_login() 
 
-    if 'user' in request:
-        requester = authbar.get_current_login() 
+    if requester and'user' in request:
+        
         user = request['user'].value
         if 'token' not in request:
 
@@ -24,13 +25,22 @@ def handle(request):
 
         else :
             # Make a mateship
+            matedb.add_mate(user, requester)
+            # This is a bit interesting. The order is actually reversed
+            # because it's the other user loading the link
+            
             d['message'] = 'Mate added!'
             d['link'] = '?who=' + user
             d['link_message'] = "Go to their page"
     else:
         d['message'] = 'User not found';
-        d['link'] = '?who=' + requester
-        d['link_message'] = "Back to my page..."
+        
+        if requester:
+            d['link'] = '?who=' + requester
+            d['link_message'] = "Back to my page..."
+        else:
+            d['link'] = ''
+            d['link_message'] = "Return to UNSWMate"
 
     print tempy.render('mate.template', d)
 
