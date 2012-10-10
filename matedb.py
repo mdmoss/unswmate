@@ -68,3 +68,10 @@ def add_mate(user, mate):
     if not c.execute('SELECT * FROM mates WHERE user=? AND mate=?', t).fetchone():
         c.execute('INSERT INTO mates (user, mate) values (?, ?)', t)
         conn.commit()
+
+def get_course_members(course):
+    t = (course,)
+    members = []
+    for member in c.execute('SELECT user FROM courses WHERE course=?', t):
+        members.append(member[0])
+    return members
