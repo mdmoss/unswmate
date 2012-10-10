@@ -7,6 +7,8 @@ import tempy
 import cgienv
 import csemail
 import os
+import re
+import subprocess
 
 token = 'magic_token_I_am_too_lazy_to_store_serverside'
 
@@ -39,7 +41,7 @@ def get(request):
 
     elif 'email' in request and 'username' in request and 'password' in request and token in request:
 
-        if matedb.user_exists(request['username'].value):
+        if matedb.user_exists(request['username'].value) or not safe(username):
             form_contents += "That usename is already taken. Try again"
             form_contents += get_signup_form(request['email'].value)
         else:
@@ -74,6 +76,14 @@ def get_signup_form(email):
 
     return form_contents
 
+def safe (username):
+    if re.match('^\w+$', username):
+        return True;
+    return False;
+    
 def create_account(username, password, email):
     matedb.create_user(username, password, email)
     # Add a folder for pics and such
+    os.mkdir('users/' + username, 0755) # Permissions are needed as default is 755
+    # And we need priv, for some reason
+    subprocess.call(['priv', 'webonly', 'users/' + username])
