@@ -6,7 +6,7 @@ import authbar
 import cgienv
 import tempy
 
-def handle(request):
+def do_mate(request):
 
     d = {}
     requester = authbar.get_current_login() 
@@ -42,7 +42,7 @@ def handle(request):
             d['link'] = ''
             d['link_message'] = "Return to UNSWMate"
 
-    print tempy.render('mate.template', d)
+    return tempy.render('mate.template', d)
 
 
 def get_mate_message(user, requester):

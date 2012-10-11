@@ -25,13 +25,13 @@ def do_login(request):
             print head.get_head()
             f = open('authbar_login.template', 'r')
             t = Template (f.read())
-            print t.safe_substitute(auth=username, page=cgienv.get_full_URL())
+            return t.safe_substitute(auth=username, page=cgienv.get_full_URL())
             
 def do_logout(request):
     print head.get_head()
     f = open('authbar_logout.template', 'r')
     t = Template (f.read())
-    print t.safe_substitute()
+    return t.safe_substitute()
 
 def get_auth_menu_label():
     if get_current_login():

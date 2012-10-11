@@ -14,7 +14,7 @@ def do_upload(request):
             fn = os.path.basename(fileitem.filename)
             open('users/' + authbar.get_current_login() + '/' + fn, 'wb').write(fileitem.file.read())
        
-    print '<script type="text/javascript">window.location.href="unswmate.cgi?who=' + authbar.get_current_login() + '"</script>'
+    return '<script type="text/javascript">window.location.href="unswmate.cgi?who=' + authbar.get_current_login() + '"</script>'
         
 
 def render(user):

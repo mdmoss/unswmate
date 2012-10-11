@@ -19,7 +19,7 @@ def do_edit(request):
     if 'student_number' in request: 
         matedb.set_data(user, 'student_number', make_safe(request['student_number'].value)) 
     # Reload the edited page
-    print '<script type="text/javascript">window.location.href="unswmate.cgi?who=' + user + '"</script>'
+    return '<script type="text/javascript">window.location.href="unswmate.cgi?who=' + user + '"</script>'
 
 def render(user):
     if authbar.get_current_login() != user: 

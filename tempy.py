@@ -11,7 +11,6 @@ base = 'tempy_base.template'
 # We can load all of these here, as this script is reloaded every
 # time the page is. Makes me cry a little.
 components = dict(
-    head = head.get_head(),
     authbar = authbar.get_authbar()
 )
 
@@ -26,3 +25,6 @@ def render (page, data):
         return t.safe_substitute(components)  
     except:
         return ''
+
+def insert_head (page):
+    return head.get_head() + "\n" + page

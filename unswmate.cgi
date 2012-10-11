@@ -13,11 +13,13 @@ import editor
 import create
 import upload
 import mate
+import tempy
+import config
 
-
-# Enable errors-to-browser
-import cgitb
-cgitb.enable()
+if config.debug:
+    # Enable errors-to-browser
+    import cgitb
+    cgitb.enable()
 
 # Print a common header
 print "Content-Type: text/html"
@@ -27,12 +29,12 @@ print
 # they're placed in the header. There's going to be some javascript magic!
 c = cgi.FieldStorage()      
 
-# Debug!
-for key in c.keys():
-    print key + " => " + c[key].value
+if config.debug:
+    for key in c.keys():
+        print key + " => " + c[key].value
   
 def handle_error(request):
-    print "An error occured, and was caught. Whoops..."
+    return "An error occured, and was caught. Whoops..."
       
 # Actions have priority in our routing system
 
@@ -42,13 +44,13 @@ if 'action' in c:
         'login': authbar.do_login,
         'logout': authbar.do_logout,
         'edit': editor.do_edit,
-        'create': create.get,
+        'create': create.do_create,
         'upload': upload.do_upload,
-        'mate': mate.handle,
+        'mate': mate.do_mate,
     }
     
     chosen = c['action'].value
-    actions.get(chosen, handle_error)(c)
+    result = actions.get(chosen, handle_error)(c)
 
 # Followed by pages
       
@@ -58,21 +60,23 @@ elif 'page' in c:
     )
     
     chosen = c['page'].value
-    print pages[chosen]()
+    result = pages[chosen]()
      
 # Was it a search?
 
 elif 'search' in c:
 
-   print search.render(c)  
+   result = search.render(c)  
 
 # Or at least an ordinary matepage
 
 elif 'who' in c:
-    print matepage.render()
+    result = matepage.render()
 
 # At worst, show a welcome screen
       
 else:      
-    print matepage.render()
+    result = matepage.render()
+
+print tempy.insert_head(result); 
     

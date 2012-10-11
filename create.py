@@ -12,7 +12,7 @@ import subprocess
 
 token = 'magic_token_I_am_too_lazy_to_store_serverside'
 
-def get(request):
+def do_create(request):
 
     form_contents = ""
 
@@ -41,7 +41,7 @@ def get(request):
 
     elif 'email' in request and 'username' in request and 'password' in request and token in request:
 
-        if matedb.user_exists(request['username'].value) or not safe(username):
+        if matedb.user_exists(request['username'].value) or not safe(request['username'].value):
             form_contents += "That usename is already taken. Try again"
             form_contents += get_signup_form(request['email'].value)
         else:
@@ -54,7 +54,7 @@ def get(request):
         form = form_contents
     )
 
-    print tempy.render('create.template', d);
+    return tempy.render('create.template', d);
 
 
 def send_signup_email(email):
