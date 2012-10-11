@@ -6,6 +6,8 @@ import head
 import matelist
 import authbar
 
+base = 'tempy_base.template'
+
 # We can load all of these here, as this script is reloaded every
 # time the page is. Makes me cry a little.
 components = dict(
@@ -15,9 +17,12 @@ components = dict(
 
 def render (page, data):
     try:
-        f = open(page, 'r')
-        t = Template(f.read())
-        data.update(components)
-        return t.safe_substitute(data)
+        internal_page = open(page, 'r')
+        t = Template(internal_page.read())
+        components['content'] = t.safe_substitute(data)
+
+        base_page = open(base, 'r')
+        t = Template(base_page.read())
+        return t.safe_substitute(components)  
     except:
         return ''

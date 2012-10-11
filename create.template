@@ -1,9 +1,1 @@
-${head}
-<body>
-${authbar}
-
-<div>
-    <div class="container">
-        ${form}
-    </div>
-</div>
+${form}

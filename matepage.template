@@ -1,8 +1,3 @@
-<!-- Common Head -->
-${head}
-<body>
-${authbar}
-
 <div id="profile">
     <div class="container">
         <div class="span3">
