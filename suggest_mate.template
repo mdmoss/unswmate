@@ -1,0 +1,6 @@
+<div class="row">  
+    <a href="?who=${username}">${image}</a>
+    <p><a href="?who=${username}">${name}</a></p>
+
+    <p>Mateship Score: ${score}</p>
+</div>

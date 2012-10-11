@@ -12,9 +12,9 @@ import gallery
 import editor
 import upload
 import mate
+import suggest
 
 def render():
-
     form = cgi.FieldStorage()
     if 'who' in form:
         user = form['who'].value
@@ -33,6 +33,8 @@ def render():
         edit_pane_contents = editor.render(user),
         upload_pane_tab = upload.get_upload_tab(user),
         upload_pane_contents = upload.render(user),
+        suggest_pane_tab = suggest.get_suggest_tab(user),
+        suggest_pane_contents = suggest.get_suggest_pane(user),
     )
 
     data.update(matedb.get_user_data (user));

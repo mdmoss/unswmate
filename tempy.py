@@ -28,3 +28,11 @@ def render (page, data):
 
 def insert_head (page):
     return head.get_head() + "\n" + page
+
+def substitute (page, data):
+    try:
+        template = open(page, 'r')
+        t = Template(template.read())
+        return t.safe_substitute(data)  
+    except:
+        return ''

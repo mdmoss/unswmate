@@ -29,6 +29,7 @@
                 <li><a href="#gallery" data-toggle="tab">Gallery</a></li>
                 ${edit_pane_tab}
                 ${upload_pane_tab}
+                ${suggest_pane_tab}
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="mates">
@@ -44,6 +45,9 @@
                 </div>
                 <div class="tab-pane fade" id="upload">
                     ${upload_pane_contents}
+                </div>
+                <div class="tab-pane fade" id="suggest">
+                    ${suggest_pane_contents}
                 </div>
             </div>
         </div>

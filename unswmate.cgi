@@ -15,6 +15,7 @@ import upload
 import mate
 import tempy
 import config
+import suggest
 
 if config.debug:
     # Enable errors-to-browser
@@ -47,6 +48,7 @@ if 'action' in c:
         'create': create.do_create,
         'upload': upload.do_upload,
         'mate': mate.do_mate,
+        'suggest': suggest.do_suggest,
     }
     
     chosen = c['action'].value

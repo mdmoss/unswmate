@@ -1,0 +1,5 @@
+
+<h3 style="text-align: center">Here's some people you should meet...</h3>
+${suggestions}
+
+<h3 style="text-align: center">${next_page_link}</h3>
