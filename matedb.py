@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sqlite3
-conn = sqlite3.connect('unswmate.db')
+conn = sqlite3.connect('data/unswmate.db')
 c = conn.cursor()
 
 def user_exists(user):

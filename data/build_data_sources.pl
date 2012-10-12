@@ -4,9 +4,16 @@ use strict;
 use File::Copy;
 
 # Note the missing -w. I'm lazy. And?
+my $database = "dbi:SQLite:unswmate.db";
+my $image_dir = './images';
+my $image_name_length = 12;
 
-my $db = DBI->connect("dbi:SQLite:unswmate.db", "", "", {RaiseError => 1, AutoCommit => 0});
+`rm -rf $image_dir`
+mkdir $image_dir
 
+`rsync -a /home/cs2041/public_html/assigns/unsw-mate/users/ users/`
+
+my $db = DBI->connect($database, "", "", {RaiseError => 1, AutoCommit => 0});
 
 $db->do("DROP TABLE IF EXISTS users");
 $db->do("DROP TABLE IF EXISTS mates");
@@ -46,7 +53,7 @@ foreach my $user (@all_users) {
 
     printf ("Writing db: $data{'username'}\n");
     
-    $db->do("INSERT INTO users VALUES (NULL, '".$data{'username'}."', '".$data{'password'}."', '".$data{'name'}."', '".$data{'email'}."', '".$data{'gender'}."', '".$data{'degree'}."', '".$data{'student_number'}."', '".$data{'about'}."')");
+    $db->do("INSERT INTO users VALUES (NULL, '".$data{'username'}."', '".$data{'password'}."', '".$data{'name'}."', '".$data{'email'}."', '".$data{'gender'}."', '".$data{'degree'}."', '".$data{'student_number'}."', '".$data{'about'}."', '')");
     
     for my $mate (@mates) {
         $db->do("INSERT INTO mates VALUES (NULL, '".$data{'username'}."', '".$mate."')");
@@ -61,10 +68,6 @@ foreach my $user (@all_users) {
 
 
 # And we'll stick the images over here
-my $image_dir = './data/images';
-my $image_name_length = 12;
-mkdir $image_dir or die "Couldn't make directory $image_dir";
-
 foreach my $user (@all_users) {
     print "Migrating images for $user\n";
     my @images = glob($user.'/*.jpg');
@@ -100,3 +103,6 @@ sub random_alphanum {
    }
    return $string;
 }
+
+# Clean up a little. It's like a pig sty in here
+`rm -rf users/`
