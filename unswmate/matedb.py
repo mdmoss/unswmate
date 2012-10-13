@@ -75,3 +75,10 @@ def get_course_members(course):
     for member in c.execute('SELECT user FROM courses WHERE course=?', t):
         members.append(member[0])
     return members
+
+def get_all_pictures(user):
+    t = (user,)
+    images = []
+    for image in c.execute('SELECT image FROM images WHERE user=?', t):
+        images.append(image[0])
+    return images

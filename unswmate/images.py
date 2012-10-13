@@ -7,6 +7,9 @@ import config
 def get_profile_picture(user):
     name = db.get_data(user, 'profile_picture')
     return '<img src="' + config.data_dir + name + '">'
-    
+   
 def get_all_pictures(user):
-    return glob.glob ('users/' + user + '/*.jpg')
+    images = db.get_all_pictures(user)
+    for i, image in enumerate(images):
+        images[i] = config.data_dir + image
+    return images

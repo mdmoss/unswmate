@@ -24,7 +24,6 @@ def render(request):
 
 def render_results(results):
 
-    template = Template(open('search_result.template', 'r').read())
     full_string = "";
 
     for result in results:
@@ -33,7 +32,7 @@ def render_results(results):
             user_page = cgienv.get_URL() + "?who=" + result
         )
         data.update(db.get_user_data (result))
-        full_string += template.safe_substitute(data) 
+        full_string += tempy.substitute('search_result.template', data)
 
     return full_string
 
