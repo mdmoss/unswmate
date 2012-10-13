@@ -62,6 +62,11 @@ def create_user(username, password_hash, salt, email):
     t = (username, password_hash, salt, email,)
     c.execute('INSERT INTO users (username, password_hash, salt, email) values (?, ?, ?, ?)', t)
     conn.commit()
+    set_data(username, 'gender', '')
+    set_data(username, 'degree', '')
+    set_data(username, 'about', '')
+    set_data(username, 'student_number', '')
+    set_data(username, 'name', username)
     
 def add_mate(user, mate):
     t = (user, mate,)
