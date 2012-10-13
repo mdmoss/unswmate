@@ -82,3 +82,15 @@ def get_all_pictures(user):
     for image in c.execute('SELECT image FROM images WHERE user=?', t):
         images.append(image[0])
     return images
+    
+def image_exists(image):
+    t = (image, )
+    if c.execute('SELECT * FROM images WHERE image=?', t).fetchone():
+        return True
+    return False
+    
+def add_image(user, image):
+    t = (user, image,)
+    if not c.execute('SELECT * FROM images WHERE user=? AND image=?', t).fetchone():
+        c.execute('INSERT INTO images (user, image) values (?, ?)', t)
+        conn.commit()   

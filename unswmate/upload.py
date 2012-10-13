@@ -2,17 +2,21 @@
 
 import authbar
 import os
+import random
+import string
+import matedb as db
+import config
 
 def do_upload(request):
     fileitem = request['file']
+    image_file_name = get_unique_image_name()
+    user = authbar.get_current_login()
     
-    if fileitem.filename:
+    if user and fileitem.filename:
+        open(config.data_dir + image_file_name, 'wb').write(fileitem.file.read())
+        db.add_image(user, image_file_name)
         if 'profile' in request:
-            open('users/' + authbar.get_current_login() + '/profile.jpg', 'wb').write(fileitem.file.read())
-        else:
-            # strip leading path from file name to avoid directory traversal attacks
-            fn = os.path.basename(fileitem.filename)
-            open('users/' + authbar.get_current_login() + '/' + fn, 'wb').write(fileitem.file.read())
+            db.set_data(user, 'profile_picture', image_file_name)
        
     return '<script type="text/javascript">window.location.href="unswmate.cgi?who=' + authbar.get_current_login() + '"</script>'
         
@@ -37,3 +41,12 @@ def get_upload_tab(user):
         return ''
     else:
         return '<li><a href="#upload" data-toggle="tab">Upload Images</a></li>'
+
+def get_unique_image_name():
+    image_name = ''
+    
+    while not image_name or db.image_exists(image_name):
+        random_id = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(12)])
+        image_name = 'images/' + random_id + '.jpg'
+        
+    return image_name
