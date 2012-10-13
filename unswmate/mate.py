@@ -61,7 +61,7 @@ def get_control_panel(user):
         panel += '<p class="text-success"><b>Me!</b></p>'
     elif user in db.get_all_mates(login):
         panel += '<p class="text-success"><b>Mates</b></p>'
-    else:
+    elif login:
         panel += '<button class="btn" type="submit">Send Mate Request</button>\n'
         panel += '<input type="hidden" name="action" value="mate">\n'
         panel += '<input type="hidden" name="user" value="' + user + '">\n'

@@ -19,7 +19,6 @@ def do_upload(request):
             db.set_data(user, 'profile_picture', image_file_name)
        
     return '<script type="text/javascript">window.location.href="unswmate.cgi?who=' + authbar.get_current_login() + '"</script>'
-        
 
 def render(user):
     if authbar.get_current_login() != user: 
@@ -45,6 +44,7 @@ def get_upload_tab(user):
 def get_unique_image_name():
     image_name = ''
     
+    # This format gives us 56^12 possible combinations. Gee, I hope that's enough...
     while not image_name or db.image_exists(image_name):
         random_id = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(12)])
         image_name = 'images/' + random_id + '.jpg'

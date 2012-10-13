@@ -12,6 +12,7 @@ import search
 import suggest
 import matepage
 import tempy
+import courses
 
 def serve():
     if config.debug:
@@ -51,24 +52,16 @@ def serve():
         chosen = c['action'].value
         result = actions.get(chosen, handle_error)(c)
 
-    # Followed by pages
-          
-    elif 'page' in c:
-
-        pages = dict(
-        )
-        
-        chosen = c['page'].value
-        result = pages[chosen]()
+    # Are they looking for course info?        
+    elif 'course' in c:
+        result = courses.render(c)
          
     # Was it a search?
-
     elif 'search' in c:
 
        result = search.render(c)  
 
     # Or at least an ordinary matepage
-
     elif 'who' in c:
         result = matepage.render()
 

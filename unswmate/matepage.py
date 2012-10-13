@@ -9,6 +9,7 @@ import images as images
 import authbar 
 import tempy
 import gallery
+import courses
 import editor
 import upload
 import mate
@@ -27,6 +28,7 @@ def render():
     data = dict(
         matelist = matelist.get_matelist(user),
         gallery = gallery.get_gallery(user),
+        courses_pane_contents = courses.get_courses_pane(user),
         profile_picture = images.get_profile_picture(user),
         controls = mate.get_control_panel(user),
         edit_pane_tab = editor.get_edit_tab(user),

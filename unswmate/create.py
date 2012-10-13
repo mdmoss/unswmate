@@ -83,7 +83,3 @@ def safe (username):
     
 def create_account(username, password, email):
     db.create_user(username, password, email)
-    # Add a folder for pics and such
-    os.mkdir('users/' + username, 0755) # Permissions are needed as default is 755
-    # And we need priv, for some reason
-    subprocess.call(['priv', 'webonly', 'users/' + username])
