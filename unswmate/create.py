@@ -2,7 +2,7 @@
 
 from string import Template
 
-import matedb
+import matedb as db
 import tempy
 import cgienv
 import csemail
@@ -41,7 +41,7 @@ def do_create(request):
 
     elif 'email' in request and 'username' in request and 'password' in request and token in request:
 
-        if matedb.user_exists(request['username'].value) or not safe(request['username'].value):
+        if db.user_exists(request['username'].value) or not safe(request['username'].value):
             form_contents += "That usename is already taken. Try again"
             form_contents += get_signup_form(request['email'].value)
         else:
@@ -82,7 +82,7 @@ def safe (username):
     return False;
     
 def create_account(username, password, email):
-    matedb.create_user(username, password, email)
+    db.create_user(username, password, email)
     # Add a folder for pics and such
     os.mkdir('users/' + username, 0755) # Permissions are needed as default is 755
     # And we need priv, for some reason

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import matedb
+import matedb as db
 import csemail
 import authbar
 import cgienv
@@ -16,7 +16,7 @@ def do_mate(request):
         user = request['user'].value
         if 'token' not in request:
 
-            user_address = matedb.get_data(user, 'email')
+            user_address = db.get_data(user, 'email')
             if user_address == 'mdm@cse.unsw.edu.au':
                 csemail.send(user_address, "UNSW Mate request", get_mate_message(user, requester))
             d['message'] = 'Mate request sent. Stay tuned...';
@@ -25,7 +25,7 @@ def do_mate(request):
 
         else :
             # Make a mateship
-            matedb.add_mate(user, requester)
+            db.add_mate(user, requester)
             # This is a bit interesting. The order is actually reversed
             # because it's the other user loading the link
             
@@ -59,7 +59,7 @@ def get_control_panel(user):
     
     if user == login:
         panel += '<p class="text-success"><b>Me!</b></p>'
-    elif user in matedb.get_all_mates(login):
+    elif user in db.get_all_mates(login):
         panel += '<p class="text-success"><b>Mates</b></p>'
     else:
         panel += '<button class="btn" type="submit">Send Mate Request</button>\n'

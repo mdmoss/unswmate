@@ -5,13 +5,13 @@ use File::Copy;
 
 # Note the missing -w. I'm lazy. And?
 my $database = "dbi:SQLite:unswmate.db";
-my $image_dir = './images';
+my $image_dir = 'images';
 my $image_name_length = 12;
 
-`rm -rf $image_dir`
-mkdir $image_dir
+`rm -rf $image_dir`;
+mkdir $image_dir;
 
-`rsync -a /home/cs2041/public_html/assigns/unsw-mate/users/ users/`
+`rsync -a /home/cs2041/public_html/assigns/unsw-mate/users/ users/`;
 
 my $db = DBI->connect($database, "", "", {RaiseError => 1, AutoCommit => 0});
 
@@ -105,4 +105,4 @@ sub random_alphanum {
 }
 
 # Clean up a little. It's like a pig sty in here
-`rm -rf users/`
+`rm -rf users/`;

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import images
+import images as images
 
 def get_gallery(user):
     gallery = ""

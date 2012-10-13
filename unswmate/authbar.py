@@ -4,9 +4,10 @@ import cgi
 import Cookie
 from string import Template
 
-import matedb
+import matedb as db
 import head
 import cgienv
+import config
 
 def get_current_login():
     try:
@@ -20,22 +21,22 @@ def do_login(request):
         username = request['username'].value
         password = request['password'].value
         # For now, we'll be lazy
-        if matedb.get_data(username, 'password') == password:
+        if db.get_data(username, 'password') == password:
             # Successful login
             print head.get_head()
-            f = open('authbar_login.template', 'r')
+            f = open(config.template_dir + 'authbar_login.template', 'r')
             t = Template (f.read())
             return t.safe_substitute(auth=username, page=cgienv.get_full_URL())
             
 def do_logout(request):
     print head.get_head()
-    f = open('authbar_logout.template', 'r')
+    f = open(config.template_dir + 'authbar_logout.template', 'r')
     t = Template (f.read())
     return t.safe_substitute()
 
 def get_auth_menu_label():
     if get_current_login():
-        return matedb.get_data(get_current_login(), 'name')
+        return db.get_data(get_current_login(), 'name')
     else:
         return "login"
 
@@ -61,7 +62,7 @@ def get_auth_menu():
 
 
 def get_authbar():
-    f = open('authbar_top.template', 'r')
+    f = open(config.template_dir + 'authbar_top.template', 'r')
     t = Template (f.read())
 
     d = dict (

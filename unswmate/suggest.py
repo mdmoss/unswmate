@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
-import matedb
+import matedb as db
 import authbar
 import tempy
-import images
+import images as images
 
 suggestions_per_page = 10
 
@@ -46,16 +46,16 @@ def get_potential_mates(user):
     # is something that happens to other people...
 
     scores = dict()
-    current_mates = matedb.get_all_mates(user)
+    current_mates = db.get_all_mates(user)
     for mate in current_mates:
-        for person in matedb.get_all_mates(mate):
+        for person in db.get_all_mates(mate):
             if person not in current_mates and person != user:
                 if person not in scores:
                     scores[person] = 0
                 scores[person] += 1;
 
-    for course in matedb.get_all_courses(user):
-        for person in matedb.get_course_members(course):
+    for course in db.get_all_courses(user):
+        for person in db.get_course_members(course):
             if person not in current_mates and person != user:
                 if person not in scores:
                     scores[person] = 0
@@ -68,7 +68,7 @@ def format_mate(user, mate_score):
     data = dict (
         username = user,
         image = images.get_profile_picture(user),
-        name = matedb.get_data(user, 'name'),
+        name = db.get_data(user, 'name'),
         score = mate_score,
     )
     

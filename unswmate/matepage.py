@@ -2,10 +2,10 @@
 import cgi
 from string import Template
 
-import matedb
+import matedb as db
 import head
 import matelist
-import images         
+import images as images        
 import authbar 
 import tempy
 import gallery
@@ -37,6 +37,6 @@ def render():
         suggest_pane_contents = suggest.get_suggest_pane(user),
     )
 
-    data.update(matedb.get_user_data (user));
+    data.update(db.get_user_data (user));
 
     return tempy.render('matepage.template', data)

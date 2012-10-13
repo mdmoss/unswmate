@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
-import matedb
+import matedb as db
 import tempy
-import images
+import images as images
 import cgienv
 from string import Template
 from safety import make_safe
@@ -32,12 +32,12 @@ def render_results(results):
             profile_picture = images.get_profile_picture(result),
             user_page = cgienv.get_URL() + "?who=" + result
         )
-        data.update(matedb.get_user_data (result))
+        data.update(db.get_user_data (result))
         full_string += template.safe_substitute(data) 
 
     return full_string
 
 def search(term):
-    results = matedb.search_like(term, 'username')
-    results += matedb.search_like(term, 'name')
+    results = db.search_like(term, 'username')
+    results += db.search_like(term, 'name')
     return set(results)

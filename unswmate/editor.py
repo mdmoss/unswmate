@@ -1,23 +1,24 @@
 #!/usr/bin/python
 
 import authbar
-import matedb
+import matedb as db
 from string import Template
 from safety import make_safe
+import tempy
 
 def do_edit(request):
     # This is where things get interesting
     user = authbar.get_current_login()
     if 'name' in request: 
-        matedb.set_data(user, 'name', make_safe(request['name'].value)) 
+        db.set_data(user, 'name', make_safe(request['name'].value)) 
     if 'about' in request: 
-        matedb.set_data(user, 'about', make_safe(request['about'].value)) 
+        db.set_data(user, 'about', make_safe(request['about'].value)) 
     if 'gender' in request: 
-        matedb.set_data(user, 'gender', make_safe(request['gender'].value)) 
+        db.set_data(user, 'gender', make_safe(request['gender'].value)) 
     if 'degree' in request: 
-        matedb.set_data(user, 'degree', make_safe(request['degree'].value)) 
+        db.set_data(user, 'degree', make_safe(request['degree'].value)) 
     if 'student_number' in request: 
-        matedb.set_data(user, 'student_number', make_safe(request['student_number'].value)) 
+        db.set_data(user, 'student_number', make_safe(request['student_number'].value)) 
     # Reload the edited page
     return '<script type="text/javascript">window.location.href="unswmate.cgi?who=' + user + '"</script>'
 
@@ -26,10 +27,9 @@ def render(user):
         return ''
 
     # We know the user is logged in
-    d = matedb.get_user_data(user)
+    d = db.get_user_data(user)
 
-    t = Template(open('editor.template', 'r').read())
-    return t.safe_substitute(d)
+    return tempy.substitute('editor.template', d)
 
 def get_edit_tab(user):
     if authbar.get_current_login() == user:

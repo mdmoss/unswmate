@@ -2,6 +2,7 @@
 
 from string import Template
 
+import config
 import head
 import matelist
 import authbar
@@ -16,11 +17,11 @@ components = dict(
 
 def render (page, data):
     try:
-        internal_page = open(page, 'r')
+        internal_page = open(config.template_dir + page, 'r')
         t = Template(internal_page.read())
         components['content'] = t.safe_substitute(data)
 
-        base_page = open(base, 'r')
+        base_page = open(config.template_dir + base, 'r')
         t = Template(base_page.read())
         return t.safe_substitute(components)  
     except:
@@ -31,7 +32,7 @@ def insert_head (page):
 
 def substitute (page, data):
     try:
-        template = open(page, 'r')
+        template = open(config.template_dir + page, 'r')
         t = Template(template.read())
         return t.safe_substitute(data)  
     except:
