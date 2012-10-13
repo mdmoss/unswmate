@@ -3,6 +3,7 @@ import os
 import cgi
 import Cookie
 from string import Template
+import hashlib
 
 import matedb as db
 import head
@@ -21,7 +22,7 @@ def do_login(request):
         username = request['username'].value
         password = request['password'].value
         # For now, we'll be lazy
-        if db.get_data(username, 'password') == password:
+        if db.get_data(username, 'password_hash') == get_hash(username, password):
             # Successful login
             print head.get_head()
             f = open(config.template_dir + 'authbar_login.template', 'r')
@@ -72,3 +73,13 @@ def get_authbar():
     )
 
     return t.safe_substitute(d)
+
+def get_hash(user, password):
+    salt = db.get_data(user, 'salt')
+    return hashlib.sha512(password + salt).hexdigest()
+
+
+
+
+
+

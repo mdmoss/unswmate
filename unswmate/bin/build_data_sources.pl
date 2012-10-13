@@ -2,6 +2,7 @@
 use DBI;
 use strict;
 use File::Copy;
+use Digest::SHA qw(sha512_hex);
 
 # Note the missing -w. I'm lazy. And?
 my $database = "dbi:SQLite:unswmate.db";
@@ -20,7 +21,7 @@ $db->do("DROP TABLE IF EXISTS mates");
 $db->do("DROP TABLE IF EXISTS courses");
 $db->do("DROP TABLE IF EXISTS images");
 
-$db->do("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT, name TEXT, email TEXT, gender TEXT, degree TEXT, student_number INTEGER, about TEXT, profile_picture TEXT)");
+$db->do("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password_hash TEXT, salt TEXT, name TEXT, email TEXT, gender TEXT, degree TEXT, student_number INTEGER, about TEXT, profile_picture TEXT)");
 $db->do("CREATE TABLE mates (id INTEGER PRIMARY KEY, user TEXT, mate TEXT)");
 $db->do("CREATE TABLE courses (id INTEGER PRIMARY KEY, user TEXT, course TEXT)");
 $db->do("CREATE TABLE images (id INTEGER PRIMARY KEY, user TEXT, image TEXT)");
@@ -51,9 +52,13 @@ foreach my $user (@all_users) {
         }
     }
 
+    # Hash the password
+    my $salt = random_alphanum(16);
+    my $password = sha512_hex($data{'password'}.$salt);
+    
     printf ("Writing db: $data{'username'}\n");
     
-    $db->do("INSERT INTO users VALUES (NULL, '".$data{'username'}."', '".$data{'password'}."', '".$data{'name'}."', '".$data{'email'}."', '".$data{'gender'}."', '".$data{'degree'}."', '".$data{'student_number'}."', '".$data{'about'}."', '')");
+    $db->do("INSERT INTO users VALUES (NULL, '".$data{'username'}."', '".$password."', '".$salt."', '".$data{'name'}."', '".$data{'email'}."', '".$data{'gender'}."', '".$data{'degree'}."', '".$data{'student_number'}."', '".$data{'about'}."', '')");
     
     for my $mate (@mates) {
         $db->do("INSERT INTO mates VALUES (NULL, '".$data{'username'}."', '".$mate."')");
@@ -73,9 +78,9 @@ foreach my $user (@all_users) {
     my @images = glob($user.'/*.jpg');
     $user =~ s/\.\/users\///;
     foreach my $image (@images) {
-        my $new_name = random_alphanum().'.jpg'; 
+        my $new_name = random_alphanum($image_name_length).'.jpg'; 
         while (-e $image_dir.'/'.$new_name) {
-            $new_name = random_alphanum().'.jpg'; 
+            $new_name = random_alphanum($image_name_length).'.jpg'; 
         }
         print $new_name."\n";
         my $image_full = $image_dir.'/'.$new_name;
@@ -91,7 +96,7 @@ foreach my $user (@all_users) {
 
 sub random_alphanum {
     my $string = '';
-    foreach (1 .. $image_name_length) {
+    foreach (1 .. $_[0]) {
        my $random = int(rand(62));
        if ($random <= 25) {
            $string .= chr(ord('a')+$random);

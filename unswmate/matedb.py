@@ -42,7 +42,7 @@ def set_data(user, field, value):
     conn.commit()
 
 def get_user_data(user):
-    fields = ['username', 'name', 'password', 'email', 'gender', 'degree', 'about', 'student_number']  
+    fields = ['username', 'name', 'email', 'gender', 'degree', 'about', 'student_number']  
     data = {}
     for field in fields:
         data[field] = get_data(user, field)
@@ -58,9 +58,9 @@ def search_like(term, field):
         results.append(result[0])
     return results
 
-def create_user(username, password, email):
-    t = (username, password, email,)
-    c.execute('INSERT INTO users (username, password, email) values (?, ?, ?)', t)
+def create_user(username, password_hash, salt, email):
+    t = (username, password_hash, salt, email,)
+    c.execute('INSERT INTO users (username, password_hash, salt, email) values (?, ?, ?, ?)', t)
     conn.commit()
     
 def add_mate(user, mate):

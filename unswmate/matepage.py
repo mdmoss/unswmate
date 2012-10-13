@@ -39,6 +39,6 @@ def render():
         suggest_pane_contents = suggest.get_suggest_pane(user),
     )
 
-    data.update(db.get_user_data (user));
+    data.update(db.get_user_data(user));
 
     return tempy.render('matepage.template', data)

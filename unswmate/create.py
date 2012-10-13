@@ -1,14 +1,17 @@
 #!/usr/bin/python
 
+import string
 from string import Template
+import hashlib
+import random
+import os
+import re
+import subprocess
 
 import matedb as db
 import tempy
 import cgienv
 import csemail
-import os
-import re
-import subprocess
 
 token = 'magic_token_I_am_too_lazy_to_store_serverside'
 
@@ -82,4 +85,8 @@ def safe (username):
     return False;
     
 def create_account(username, password, email):
-    db.create_user(username, password, email)
+    # Handle password hashing
+    salt = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(12)])
+    password_hash = hashlib.sha512(password + salt).hexdigest()
+    
+    db.create_user(username, password_hash, salt, email)
