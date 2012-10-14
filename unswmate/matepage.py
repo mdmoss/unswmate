@@ -2,7 +2,6 @@
 import cgi
 from string import Template
 
-import matedb as db
 import head
 import matelist
 import images as images        
@@ -14,6 +13,7 @@ import editor
 import upload
 import mate
 import suggest
+import privacy
 
 def render():
     form = cgi.FieldStorage()
@@ -37,8 +37,10 @@ def render():
         upload_pane_contents = upload.render(user),
         suggest_pane_tab = suggest.get_suggest_tab(user),
         suggest_pane_contents = suggest.get_suggest_pane(user),
+        privacy_pane_tab = privacy.get_privacy_tab(user),
+        privacy_pane_contents = privacy.get_privacy_pane(user),
     )
 
-    data.update(db.get_user_data(user));
+    data.update(privacy.get_user_data(user));
 
     return tempy.render('matepage.template', data)

@@ -20,13 +20,11 @@ $db->do("DROP TABLE IF EXISTS users");
 $db->do("DROP TABLE IF EXISTS mates");
 $db->do("DROP TABLE IF EXISTS courses");
 $db->do("DROP TABLE IF EXISTS images");
-$db->do("DROP TABLE IF EXISTS privacy");
 
 $db->do("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password_hash TEXT, salt TEXT, name TEXT, email TEXT, gender TEXT, degree TEXT, student_number INTEGER, about TEXT, profile_picture TEXT)");
 $db->do("CREATE TABLE mates (id INTEGER PRIMARY KEY, user TEXT, mate TEXT)");
 $db->do("CREATE TABLE courses (id INTEGER PRIMARY KEY, user TEXT, course TEXT)");
 $db->do("CREATE TABLE images (id INTEGER PRIMARY KEY, user TEXT, image TEXT)");
-$db->do("CREATE TABLE privacy (id INTEGER PRIMARY KEY, user TEXT, property TEXT)");
 
 # Database created. Lets get populatin'
 

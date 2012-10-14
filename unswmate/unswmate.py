@@ -13,6 +13,7 @@ import suggest
 import matepage
 import tempy
 import courses
+import privacy
 
 def serve():
     if config.debug:
@@ -36,7 +37,6 @@ def serve():
         return "An error occured, and was caught. Whoops..."
           
     # Actions have priority in our routing system
-
     if 'action' in c:
 
         actions = {
@@ -47,6 +47,7 @@ def serve():
             'upload': upload.do_upload,
             'mate': mate.do_mate,
             'suggest': suggest.do_suggest,
+            'privacy': privacy.do_privacy,
         }
         
         chosen = c['action'].value
@@ -54,11 +55,10 @@ def serve():
 
     # Are they looking for course info?        
     elif 'course' in c:
-        result = courses.render(c)
+        result = courses.render(c)  
          
     # Was it a search?
     elif 'search' in c:
-
        result = search.render(c)  
 
     # Or at least an ordinary matepage
@@ -66,7 +66,6 @@ def serve():
         result = matepage.render()
 
     # At worst, show a welcome screen
-          
     else:      
         result = matepage.render()
 

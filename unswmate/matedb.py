@@ -1,8 +1,11 @@
 #!/usr/bin/python
 
 import sqlite3
-conn = sqlite3.connect('data/unswmate.db')
+conn = sqlite3.connect('data/unswmate.db', timeout=10)
 c = conn.cursor()
+
+# Exposed for safety checks in other modules
+user_data_fields = ['username', 'name', 'email', 'gender', 'degree', 'about', 'student_number']
 
 def user_exists(user):
     t = (user, )
@@ -41,10 +44,9 @@ def set_data(user, field, value):
     c.execute(query, t)
     conn.commit()
 
-def get_user_data(user):
-    fields = ['username', 'name', 'email', 'gender', 'degree', 'about', 'student_number']  
+def get_user_data(user):  
     data = {}
-    for field in fields:
+    for field in user_data_fields:
         data[field] = get_data(user, field)
     data['courses'] = get_all_courses(user);
     data['mates'] = get_all_mates(user);
@@ -71,7 +73,7 @@ def create_user(username, password_hash, salt, email):
 def add_mate(user, mate):
     t = (user, mate,)
     if not c.execute('SELECT * FROM mates WHERE user=? AND mate=?', t).fetchone():
-        c.execute('INSERT INTO mates (user, mate) values (?, ?)', t)
+        c.execute('INSERT INTO mates (user, mate) VALUES (?, ?)', t)
         conn.commit()
 
 def get_course_members(course):
@@ -97,5 +99,24 @@ def image_exists(image):
 def add_image(user, image):
     t = (user, image,)
     if not c.execute('SELECT * FROM images WHERE user=? AND image=?', t).fetchone():
-        c.execute('INSERT INTO images (user, image) values (?, ?)', t)
+        c.execute('INSERT INTO images (user, image) VALUES (?, ?)', t)
         conn.commit()   
+        
+privacy_fields = ['name', 'gender', 'student_number', 'degree', 'about', 
+              'profile_picture', 'gallery', 'courses', 'mates', 'news']
+        
+def is_private (user, property):
+    t = (user, property,)
+    if c.execute('SELECT * FROM privacy WHERE user=? AND property=?', t).fetchone():
+        return True
+    return False    
+    
+def make_private (user, property):
+    t = (user, property,)
+    c.execute('INSERT INTO privacy (user, property) VALUES (?, ?)', t)
+    conn.commit()
+        
+def make_public (user, property):
+    t = (user, property,)
+    c.execute('DELETE FROM privacy WHERE user=? AND property=?', t)
+    conn.commit()

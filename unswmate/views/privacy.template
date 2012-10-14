@@ -1,0 +1,49 @@
+<form method="post">
+    <input type="hidden" name="action" value="privacy">
+    <p>Select items to make private:</p>
+    
+    <label class="checkbox">
+        <input type="checkbox" name="name" />Name
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox" name="gender" />Gender
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox" name="student_number" />Student Number
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox" name="degree" />Degree
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox" name="about" />About Me
+    </label>
+    
+    <br />
+    
+    <label class="checkbox">
+        <input type="checkbox" name="profile_picture" />Profile Picture
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox" name="gallery" />Gallery
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox" name="courses" />Courses
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox" name="mates" />Mates
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox" name="news" />News
+    </label>
+    
+
+    <button type="submit" method="post" class="btn">Save</button>
+</form>

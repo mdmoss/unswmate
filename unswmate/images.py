@@ -3,8 +3,13 @@
 import glob
 import matedb as db
 import config
+import privacy
 
 def get_profile_picture(user):
+
+    if not privacy.permitted (user, 'profile_picture'):
+        return ''
+
     name = db.get_data(user, 'profile_picture')
     if name:
         return '<img src="' + config.data_dir + name + '">'
