@@ -26,9 +26,14 @@ def permitted (user, property):
     
 def get_privacy_pane (user):
     if authbar.get_current_login() != user: 
-        return ''    
+        return ''
         
-    return tempy.substitute ('privacy.template', dict())
+    states = dict()
+
+    for field in matedb.privacy_fields:
+        states[field + '_state'] = cb_state (user, field)
+        
+    return tempy.substitute ('privacy.template', states)
     
 def get_privacy_tab (user):
     if authbar.get_current_login() != user: 
@@ -49,7 +54,7 @@ def do_privacy (request):
             value = request[field].value
             if value == 'on':
                 matedb.make_private(user, field)
-            if value == 'off':
-                matedb.make_public(user, field)
+        else:
+            matedb.make_public(user, field)
 
     return '<script type="text/javascript">window.location.href="unswmate.cgi?who=' + user + '"</script>'

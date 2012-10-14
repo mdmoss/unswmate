@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sqlite3
-conn = sqlite3.connect('data/unswmate.db', timeout=10)
+conn = sqlite3.connect('data/unswmate.db')
 c = conn.cursor()
 
 # Exposed for safety checks in other modules
@@ -103,7 +103,7 @@ def add_image(user, image):
         conn.commit()   
         
 privacy_fields = ['name', 'gender', 'student_number', 'degree', 'about', 
-              'profile_picture', 'gallery', 'courses', 'mates', 'news']
+              'profile_picture', 'gallery', 'courses', 'matelist', 'news']
         
 def is_private (user, property):
     t = (user, property,)
@@ -113,10 +113,12 @@ def is_private (user, property):
     
 def make_private (user, property):
     t = (user, property,)
-    c.execute('INSERT INTO privacy (user, property) VALUES (?, ?)', t)
-    conn.commit()
+    if not c.execute('SELECT * FROM privacy WHERE user=? AND property=?', t).fetchone():
+        c.execute('INSERT INTO privacy (user, property) VALUES (?, ?)', t)
+        conn.commit()
         
 def make_public (user, property):
     t = (user, property,)
-    c.execute('DELETE FROM privacy WHERE user=? AND property=?', t)
-    conn.commit()
+    if c.execute('SELECT * FROM privacy WHERE user=? AND property=?', t).fetchone():
+        c.execute('DELETE FROM privacy WHERE user=? AND property=?', t)
+        conn.commit()

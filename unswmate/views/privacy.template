@@ -3,45 +3,45 @@
     <p>Select items to make private:</p>
     
     <label class="checkbox">
-        <input type="checkbox" name="name" />Name
+        <input type="checkbox" name="name" ${name_state}/>Name
     </label>
     
     <label class="checkbox">
-        <input type="checkbox" name="gender" />Gender
+        <input type="checkbox" name="gender" ${gender_state}/>Gender
     </label>
     
     <label class="checkbox">
-        <input type="checkbox" name="student_number" />Student Number
+        <input type="checkbox" name="student_number" ${student_number_state}/>Student Number
     </label>
     
     <label class="checkbox">
-        <input type="checkbox" name="degree" />Degree
+        <input type="checkbox" name="degree" ${degree_state}/>Degree
     </label>
     
     <label class="checkbox">
-        <input type="checkbox" name="about" />About Me
+        <input type="checkbox" name="about" ${about_state}/>About Me
     </label>
     
     <br />
     
     <label class="checkbox">
-        <input type="checkbox" name="profile_picture" />Profile Picture
+        <input type="checkbox" name="profile_picture" ${profile_picture_state}/>Profile Picture
     </label>
     
     <label class="checkbox">
-        <input type="checkbox" name="gallery" />Gallery
+        <input type="checkbox" name="gallery" ${gallery_state}/>Gallery
     </label>
     
     <label class="checkbox">
-        <input type="checkbox" name="courses" />Courses
+        <input type="checkbox" name="courses" ${courses_state}/>Courses
     </label>
     
     <label class="checkbox">
-        <input type="checkbox" name="mates" />Mates
+        <input type="checkbox" name="matelist" ${matelist_state}/>Mates
     </label>
     
     <label class="checkbox">
-        <input type="checkbox" name="news" />News
+        <input type="checkbox" name="news" ${news_state}/>News
     </label>
     
 
