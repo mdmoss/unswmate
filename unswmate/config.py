@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-debug = True
+debug = False 
 
 data_dir = 'data/'
 db_name = 'unswmate.db'

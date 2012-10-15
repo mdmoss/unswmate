@@ -50,6 +50,7 @@ def serve():
             'suggest': suggest.do_suggest,
             'privacy': privacy.do_privacy,
             'news': news.do_news,
+            'comment': news.do_comment,
         }
         
         chosen = c['action'].value
