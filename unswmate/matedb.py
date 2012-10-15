@@ -128,7 +128,7 @@ def make_public (user, property):
 
 def get_news (user):
     t = (user,)
-    return c.execute('SELECT user,poster,message,image,time FROM news WHERE user=?', t).fetchall();
+    return c.execute('SELECT user,poster,message,image,time,id FROM news WHERE user=?', t).fetchall();
 
 def post_news (user, poster, message, image):
     # This looks a litle murky. Gets the current unix time
@@ -136,3 +136,23 @@ def post_news (user, poster, message, image):
     t = (user, poster, message, image, post_time,)
     c.execute('INSERT INTO news (user, poster, message, image, time) VALUES (?, ?, ?, ?, ?)', t)
     conn.commit()
+
+def news_item_exists(news_id):
+    t = (news_id,)
+    if c.execute('SELECT * FROM news WHERE id=?', news_id).fetchone():
+        return True
+    return False
+
+def get_comments (news_id):
+    t = (news_id,)
+    return c.execute('SELECT user,message,time FROM comments WHERE news_id=?', t).fetchall();
+
+def post_comment (news_id, user, message):
+    post_time = int(time.mktime(datetime.datetime.now().timetuple()))
+    t = (news_id, user, message, post_time,)
+    c.execute('INSERT INTO comments (news_id, user, message, time) VALUES (?, ?, ?, ?)', t)
+    conn.commit()
+ 
+def get_owner (news_id):
+    t = (news_id,)
+    return c.execute('SELECT user FROM news WHERE id=?', t).fetchone()
