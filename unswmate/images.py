@@ -6,7 +6,6 @@ import config
 import privacy
 
 def get_profile_picture(user):
-
     if not privacy.permitted (user, 'profile_picture'):
         return ''
 

@@ -21,12 +21,16 @@ $db->do("DROP TABLE IF EXISTS mates");
 $db->do("DROP TABLE IF EXISTS courses");
 $db->do("DROP TABLE IF EXISTS images");
 $db->do("DROP TABLE IF EXISTS privacy");
+$db->do("DROP TABLE IF EXISTS news");
+$db->do("DROP TABLE IF EXISTS comments");
 
 $db->do("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password_hash TEXT, salt TEXT, name TEXT, email TEXT, gender TEXT, degree TEXT, student_number INTEGER, about TEXT, profile_picture TEXT)");
 $db->do("CREATE TABLE mates (id INTEGER PRIMARY KEY, user TEXT, mate TEXT)");
 $db->do("CREATE TABLE courses (id INTEGER PRIMARY KEY, user TEXT, course TEXT)");
 $db->do("CREATE TABLE images (id INTEGER PRIMARY KEY, user TEXT, image TEXT)");
 $db->do("CREATE TABLE privacy (id INTEGER PRIMARY KEY, user TEXT, property TEXT)");
+$db->do("CREATE TABLE news (id INTEGER PRIMARY KEY, user TEXT, poster TEXT, message TEXT, time INTEGER)");
+$db->do("CREATE TABLE comments (id INTEGER PRIMARY KEY, news_id INTEGER, user TEXT, message TEXT, time INTEGER);");
 
 # Database created. Lets get populatin'
 

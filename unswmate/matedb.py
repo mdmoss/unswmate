@@ -1,6 +1,9 @@
 #!/usr/bin/python
 
 import sqlite3
+import datetime
+import time
+
 conn = sqlite3.connect('data/unswmate.db')
 c = conn.cursor()
 
@@ -122,3 +125,14 @@ def make_public (user, property):
     if c.execute('SELECT * FROM privacy WHERE user=? AND property=?', t).fetchone():
         c.execute('DELETE FROM privacy WHERE user=? AND property=?', t)
         conn.commit()
+
+def get_news (user):
+    t = (user,)
+    return c.execute('SELECT user,poster,message,image,time FROM news WHERE user=?', t).fetchall();
+
+def post_news (user, poster, message, image):
+    # This looks a litle murky. Gets the current unix time
+    post_time = int(time.mktime(datetime.datetime.now().timetuple()))
+    t = (user, poster, message, image, post_time,)
+    c.execute('INSERT INTO news (user, poster, message, image, time) VALUES (?, ?, ?, ?, ?)', t)
+    conn.commit()

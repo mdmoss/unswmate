@@ -38,6 +38,7 @@
                     ${matelist}
                 </div>
                 <div class="tab-pane fade" id="news">
+                    ${news_pane_contents}
                 </div>
                 <div class="tab-pane fade" id="courses">
                     ${courses_pane_contents}

@@ -14,6 +14,7 @@ import matepage
 import tempy
 import courses
 import privacy
+import news
 
 def serve():
     if config.debug:
@@ -48,6 +49,7 @@ def serve():
             'mate': mate.do_mate,
             'suggest': suggest.do_suggest,
             'privacy': privacy.do_privacy,
+            'news': news.do_news,
         }
         
         chosen = c['action'].value

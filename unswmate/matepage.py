@@ -14,6 +14,7 @@ import upload
 import mate
 import suggest
 import privacy
+import news
 
 def render():
     form = cgi.FieldStorage()
@@ -27,6 +28,7 @@ def render():
 
     data = dict(
         matelist = matelist.get_matelist(user),
+        news_pane_contents = news.get_news_pane(user),
         gallery = gallery.get_gallery(user),
         courses_pane_contents = courses.get_courses_pane(user),
         profile_picture = images.get_profile_picture(user),
