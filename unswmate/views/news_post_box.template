@@ -1,0 +1,9 @@
+<form method="post">
+<input type="hidden" name="action" value="news">
+<input type="hidden" name="user" value="${user}">
+<textarea type="text" placeholder="News Here!" class="input-xxlarge" rows="5" name="message"></textarea><br />
+<label>Attach an image to this post: </label>
+<input type="text" name="image" placeholder="Image URL">
+<button type="submit" class="btn" method="post">Post!</button>
+</form>
+<hr />

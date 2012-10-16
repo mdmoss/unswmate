@@ -1,0 +1,6 @@
+<form method="post">
+<input type="hidden" value="comment" name="action">
+<input type="hidden" value="${news_item_id}" name="news_item_id">
+<input type="text" name="message" placeholder="comment">
+<button class="btn" type="submit" method="post">Comment</button>
+</form>

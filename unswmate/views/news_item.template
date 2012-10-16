@@ -1,0 +1,10 @@
+<p>Posted by <b>${poster_name}</b></p>
+${image}
+<p>${message}</p>
+${comment_form}
+<div class="row">
+    <div class="span6 offset1">
+        ${comments}
+    </div>
+</div>
+<br /><br />
