@@ -4,11 +4,14 @@ import matedb
 import authbar
 import safety
 import tempy
+import privacy
 
 def get_news_pane(user): 
-
     components = dict()
     login = authbar.get_current_login()
+
+    if not privacy.permitted(user, 'news'):
+        return ''
 
     if user in matedb.get_all_mates(login) or user == login:
         components['post_box'] = get_post_box(user)
