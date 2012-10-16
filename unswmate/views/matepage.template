@@ -1,20 +1,24 @@
 <div id="profile">
     <div class="container">
-        <div class="span3 offset1">
-            ${profile_picture}
+        <div class="row">
+            <div class="span3">
+                ${profile_picture}
+            </div>
+            <div class="span6">
+                <h1>${name}</h1>
+                <p>${gender}</p>
+                <p>${degree}</p>
+                <p>${student_number}</p>
+            </div>
+            <div class="span2">
+                ${controls}
+            </div>
         </div>
-        <div class="span4">
-            <h1>${name}</h1>
-            <p>${gender}</p>
-            <p>${degree}</p>
-            <p>${student_number}</p>
-        </div>
-        <div class="span3">
-            ${controls}
-        </div>
-        <div class="span4">
-            <h3>About Me</h3>
-            <p>${about}</p>
+        <div class="row">
+            <div class="span9">
+                <h3>About Me</h3>
+                <p>${about}</p>
+            </div>
         </div>
     </div>
 </div>
