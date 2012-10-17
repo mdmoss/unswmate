@@ -10,10 +10,16 @@ import head
 import cgienv
 import config
 
+secret = "KVHJ)(*&^%$#QAXCVBNMKUYTRDFGHKL<MNBVFILOVEPERLILOVEPERLILOVEPERL"
+
 def get_current_login():
     try:
         cookie = Cookie.SimpleCookie(os.environ["HTTP_COOKIE"])
-        return cookie["auth"].value
+        username = cookie["login"].value
+        token = cookie["token"].value
+        if token == get_token(username):
+            return username
+        return None
     except (Cookie.CookieError, KeyError):
         return None;
         
@@ -21,14 +27,16 @@ def do_login(request):
     if 'username' in request and 'password' in request:
         username = request['username'].value
         password = request['password'].value
-        # For now, we'll be lazy
         if db.get_data(username, 'password_hash') == get_hash(username, password):
             # Successful login
             print head.get_head()
             f = open(config.template_dir + 'authbar_login.template', 'r')
             t = Template (f.read())
-            return t.safe_substitute(auth=username, page=cgienv.get_full_URL())
-            
+            return t.safe_substitute(login=username, token = get_token(username), page=cgienv.get_full_URL())
+      
+def get_token(username):
+    return hashlib.sha512(username + secret).hexdigest()
+
 def do_logout(request):
     print head.get_head()
     f = open(config.template_dir + 'authbar_logout.template', 'r')

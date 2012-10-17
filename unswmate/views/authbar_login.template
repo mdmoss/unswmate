@@ -1,6 +1,7 @@
 <body>
 <script type="text/javascript">
-$.cookie('auth', '${auth}')
+$.cookie('login', '${login}')
+$.cookie('token', '${token}')
 window.location.href = "${page}"
 </script>
 </body>

@@ -1,6 +1,7 @@
 <body>
 <script type="text/javascript">
-$.cookie('auth', null)
+$.cookie('login', null)
+$.cookie('token', null)
 window.location.href = "unswmate.cgi"
 </script>
 </body>
