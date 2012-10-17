@@ -9,6 +9,18 @@ def get_gallery(user):
         return ''
 
     gallery = ""
-    for image in images.get_all_pictures(user):
-        gallery += '<img src="' + image + '" />'
+    user_images = images.get_all_pictures(user)
+
+    for i in xrange(0, len(user_images), 3):
+        group = user_images[i:i+3]
+
+        gallery += '<div class="row-fluid">'
+
+        for image in group:
+            gallery += '<div class="span4">'
+            gallery += '<img src=' + image + '></img>'
+            gallery += '</div>'
+
+        gallery += '</div>'
+         
     return gallery

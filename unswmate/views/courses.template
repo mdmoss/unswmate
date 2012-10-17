@@ -1,3 +1,6 @@
-<h1 style="text-align: center">${course}</h1>
-
-${members}
+<div class="row-fluid">
+    <div class="span10 offset1">
+        <h1 style="text-align: center">${course}</h1>
+        ${members}
+    </div>
+</div>

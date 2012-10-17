@@ -25,7 +25,7 @@
 
 <div>
     <div class="container">
-        <div class="section">
+        <div id="matepagetabs" class="section">
             <br />
             <ul class="nav nav-tabs">
                 <li><a href="#mates" data-toggle="tab">Mates</a></li>

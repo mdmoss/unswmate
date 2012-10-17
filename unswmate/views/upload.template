@@ -1,0 +1,11 @@
+<div class="span10">
+    <form enctype="multipart/form-data" method="post">
+        <input type="file" name="file">
+        <input type="hidden" name="action" value="upload">
+        <br />
+        <label class="checkbox">
+            <input type="checkbox" name="profile"> Make this my profile picture
+        </label>
+        <button class="btn" type="submit">Upload</button>
+    </form>
+</div>

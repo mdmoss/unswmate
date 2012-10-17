@@ -5,6 +5,7 @@ import authbar
 import safety
 import tempy
 import privacy
+import images
 
 def get_news_pane(user): 
     components = dict()
@@ -62,6 +63,7 @@ def get_comment_form(news_item_id):
 
 def comment_format(comment):
     data = {}
+    data['image'] = images.get_profile_picture(comment[0])
     data['user'] = matedb.get_data(comment[0], 'name')
     data['message'] = comment[1]
     return tempy.substitute('news_comment.template', data)

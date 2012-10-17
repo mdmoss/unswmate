@@ -1,2 +1,9 @@
-<p><b>${user} said:</b></p>
-<p>${message}</p>
+<div class="row-fluid">
+    <div class="span1">
+        ${image}
+    </div>
+    <div class="span11">
+        <p><b>${user} said:</b></p>
+        <p>${message}</p>
+    </div>
+</div>

@@ -6,6 +6,7 @@ import random
 import string
 import matedb as db
 import config
+import tempy
 
 def do_upload(request):
     fileitem = request['file']
@@ -24,16 +25,7 @@ def render(user):
     if authbar.get_current_login() != user: 
         return ''
     else:
-        return """<form enctype="multipart/form-data" method="post">
-        <input type="file" name="file">
-        <input type="hidden" name="action" value="upload">
-        <br />
-         <label class="checkbox">
-            <input type="checkbox" name="profile"> Make this my profile picture
-        </label>
-        <button class="btn" type="submit">Upload</button>
-        </form>
-        """
+        return tempy.substitute('upload.template', None)
 
 def get_upload_tab(user):
     if authbar.get_current_login() != user: 

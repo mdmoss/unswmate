@@ -1,10 +1,8 @@
-<p>Posted by <b>${poster_name}</b></p>
-${image}
-<p>${message}</p>
-${comment_form}
-<div class="row">
-    <div class="span6 offset1">
-        ${comments}
-    </div>
+<div span="12">
+    <p>Posted by <b>${poster_name}</b></p>
+    ${image}
+    <p>${message}</p>
+    ${comment_form}
+    ${comments}
+    <br /><br />
 </div>
-<br /><br />

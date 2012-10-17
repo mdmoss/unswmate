@@ -78,7 +78,7 @@ def get_suggest_pane(user):
     if authbar.get_current_login() != user: 
         return ''
 
-    return '<h3 style="text-align: center"><a href="?action=suggest">Find me some mates...</a></h3>'
+    return '<div class="row-fluid"><div class="span12"><h3 style="text-align: center"><a href="?action=suggest">Find me some mates...</a></h3></div></div>'
         
 def get_suggest_tab(user):
     if authbar.get_current_login() != user: 
