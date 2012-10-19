@@ -9,7 +9,7 @@ def render(users):
     for i in xrange (0, len(users), 3):
         group = users[i:i+3]
 
-        result += '<div class="row-fluid">'
+        result += '<div class="row-fluid" id="userlist">'
 
         for user in group:
 

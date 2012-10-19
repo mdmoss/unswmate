@@ -3,55 +3,17 @@
 min-height:1080px;
 }
 
-.navbar-inner
+#userlist
 {
-background: rgb(197,222,234); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(197,222,234,1) 0%, rgba(138,187,215,1) 31%, rgba(6,109,171,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(197,222,234,1)), color-stop(31%,rgba(138,187,215,1)), color-stop(100%,rgba(6,109,171,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(197,222,234,1) 0%,rgba(138,187,215,1) 31%,rgba(6,109,171,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(197,222,234,1) 0%,rgba(138,187,215,1) 31%,rgba(6,109,171,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(197,222,234,1) 0%,rgba(138,187,215,1) 31%,rgba(6,109,171,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(197,222,234,1) 0%,rgba(138,187,215,1) 31%,rgba(6,109,171,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5deea', endColorstr='#066dab',GradientType=0 ); /* IE6-9 */
+margin-bottom:16px;
 }
 
-.navbar .brand
+#gallery
 {
-font-size:24px;
-color:rgb(255,255,255);
-text-shadow:
-    -1px -1px 0 #222222,
-    1px -1px 0 #222222,
-    -1px 1px 0 #222222,
-    1px 1px 0 #222222; 
+margin-bottom:16px;
 }
 
-.navbar .nav > li > a
+body
 {
-color:rgb(255,255,255);
-text-shadow:
-    -1px -1px 0 #222222,
-    1px -1px 0 #222222,
-    -1px 1px 0 #222222,
-    1px 1px 0 #222222;
-}
-
-.navbar .nav > li > a:focus, .navbar .nav > li > a:hover
-{
-color:rgb(255,255,255);
-text-shadow:
-    -1px -1px 0 #000000,
-    1px -1px 0 #000000,
-    -1px 1px 0 #000000,
-    1px 1px 0 #000000;
-}
-
-.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle
-{
-color:rgb(255,255,255);
-text-shadow:
-    -1px -1px 0 #000000,
-    1px -1px 0 #000000,
-    -1px 1px 0 #000000,
-    1px 1px 0 #000000;
+background-image:url('../img/cream_dust.png');
 }

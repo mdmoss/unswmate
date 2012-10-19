@@ -14,7 +14,7 @@ def get_gallery(user):
     for i in xrange(0, len(user_images), 3):
         group = user_images[i:i+3]
 
-        gallery += '<div class="row-fluid">'
+        gallery += '<div class="row-fluid" id="gallery">'
 
         for image in group:
             gallery += '<div class="span4">'
