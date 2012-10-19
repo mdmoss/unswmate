@@ -3,9 +3,10 @@
 import matedb as db
 import authbar
 import tempy
-import images as images
+import images
+import userlist
 
-suggestions_per_page = 10
+suggestions_per_page = 12
 
 def do_suggest(request):
     user = authbar.get_current_login()
@@ -29,9 +30,12 @@ def do_suggest(request):
     last = first + suggestions_per_page
 
     data = dict(username = user, suggestions = '')
+
+    renderlist = []
+    for user in ranked_list[first:last]:
+        renderlist.append(user[0]) 
     
-    for mate in ranked_list[first:last]:
-        data['suggestions'] += format_mate(mate[0], mate[1]) + ' '
+    data['suggestions'] = userlist.render(renderlist)
         
     if data['suggestions']:
         data['next_page_link'] = '<a href="?action=suggest&page=' + (str(int(page) + 1)) + '">I need more!</a>'
@@ -62,17 +66,6 @@ def get_potential_mates(user):
                 scores[person] += 1;
     
     return scores
-    
-def format_mate(user, mate_score):
-
-    data = dict (
-        username = user,
-        image = images.get_profile_picture(user),
-        name = db.get_data(user, 'name'),
-        score = mate_score,
-    )
-    
-    return tempy.substitute ('suggest_mate.template', data)
     
 def get_suggest_pane(user):
     if authbar.get_current_login() != user: 

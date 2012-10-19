@@ -17,7 +17,7 @@ def render(users):
             result += '<div class="span6"><a href="?who=' + user + '">' + images.get_profile_picture(user) + "</a></div>\n"
             result += '<div class="span6"><br /><a href="?who=' + user + '"><p><b>' + db.get_data(user, 'name') + "</b></p></a></div>\n"
             result += '</div>'
-
+        result += '<br />'
         result += '</div>'
        
     return result
