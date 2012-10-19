@@ -33,6 +33,7 @@ def do_login(request):
             f = open(config.template_dir + 'authbar_login.template', 'r')
             t = Template (f.read())
             return t.safe_substitute(login=username, token = get_token(username), page=cgienv.get_full_URL())
+    return '<script>document.location.href=""</script>'
       
 def get_token(username):
     return hashlib.sha512(username + secret).hexdigest()
@@ -69,7 +70,6 @@ def get_auth_menu():
         menu += '</li>'
     return menu
 
-
 def get_authbar():
     f = open(config.template_dir + 'authbar_top.template', 'r')
     t = Template (f.read())
@@ -85,9 +85,4 @@ def get_authbar():
 def get_hash(user, password):
     salt = db.get_data(user, 'salt')
     return hashlib.sha512(password + salt).hexdigest()
-
-
-
-
-
 

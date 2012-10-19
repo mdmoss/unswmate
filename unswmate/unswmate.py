@@ -15,6 +15,7 @@ import tempy
 import courses
 import privacy
 import news
+import homepage
 
 def serve():
     if config.debug:
@@ -68,9 +69,9 @@ def serve():
     elif 'who' in c:
         result = matepage.render()
 
-    # At worst, show a welcome screen
+    # At worst, show the home screen 
     else:      
-        result = matepage.render()
+        result = homepage.render()
 
     print tempy.insert_head(result); 
         

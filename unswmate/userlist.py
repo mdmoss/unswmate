@@ -3,7 +3,7 @@
 import matedb as db
 import images as images
 
-def format(users):
+def render(users):
     result = '';
 
     for i in xrange (0, len(users), 3):

@@ -22,7 +22,13 @@ def get_all_mates(user):
     for mate in c.execute('SELECT mate FROM mates WHERE user=?', t):
         mates.append(mate[0])
     return mates
-    
+
+def get_all_users():
+    users = []
+    for user in c.execute('SELECT username FROM users'):
+        users.append(user[0])
+    return users
+
 def get_all_courses(user):
     t = (user,)
     courses = [];

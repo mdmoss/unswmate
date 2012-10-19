@@ -10,7 +10,7 @@ import privacy
 def render(request):
     course = request['course'].value
     d = {'course': safety.make_safe(course)}
-    d['members'] = userlist.format(db.get_course_members(course))
+    d['members'] = userlist.render(db.get_course_members(course))
     
     return tempy.render('courses.template', d)
     
